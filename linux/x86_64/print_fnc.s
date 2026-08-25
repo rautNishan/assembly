@@ -3,6 +3,8 @@
 .text
 _start:
     lea r12, [loop]
+    lea rdi, [str2]
+    call print
     lea rdi, [str1]
     call print
     call exit
@@ -33,7 +35,7 @@ loop:
 
 str_len_exit:
     mov rax, r10
-    int3
+    mov r10, 0
     ret
 
 
@@ -43,4 +45,5 @@ exit:
     syscall
 
 .data
-    str1: .asciz "Hi this is hero nishan\n"
+    str1: .asciz "Hi this is str 1\n"
+    str2: .asciz "Hi this is str 2\n"
