@@ -5,9 +5,12 @@
 _start:
     lea r11, [str_len]
     lea r10, [div_loop]
-    mov rdi, 155
+    mov rdi, 2500
     call itoa
+    mov rdi, rax
     call print_ln
+    lea rdi, [str1]
+    call print
     call exit
 
 itoa:
@@ -15,7 +18,7 @@ itoa:
     mov rax, rdi
     lea rcx, [buff]
     lea rdi, [buff+32]
-    mov byte ptr [rdi], '\0'
+    mov byte ptr [rdi], 0
     call div_loop
     ret
 
@@ -32,9 +35,11 @@ div_loop:
 
 
 div_loop_exit:
+    mov rax, rdi
     ret
 
 print:
+    mov rax, 0
     push rdi
     call str_len
     pop rdi
@@ -58,7 +63,7 @@ print_ln:
 
 str_len:
     mov bl, [rdi]
-    cmp bl, '\0'
+    cmp bl, 0
     je str_ret
     inc rdi
     inc rax
@@ -76,3 +81,4 @@ exit:
 .data
  buff: .skip 1024
  new_line_buff: .byte 10
+ str1: .asciz "Hi testing the print function\n"
