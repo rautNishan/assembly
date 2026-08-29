@@ -10,7 +10,9 @@ _start:
     call exit
 
 print:
+    push rdi
     call str_len
+    pop rdi
     mov rdx, rax
     mov rsi, rdi
     mov rax, 1
