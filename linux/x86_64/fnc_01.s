@@ -5,19 +5,20 @@
 _start:
     lea r11, [str_len]
     lea r10, [div_loop]
-    mov rdi, 2500
+    mov rdi, 250019090
+    lea rsi, [buff]
     call itoa
     mov rdi, rax
     call print_ln
     lea rdi, [str1]
-    call print
+    call print_ln
     call exit
 
 itoa:
     mov rbx, 10
     mov rax, rdi
-    lea rcx, [buff]
-    lea rdi, [buff+32]
+    add rsi, 31
+    mov rdi, rsi
     mov byte ptr [rdi], 0
     call div_loop
     ret
