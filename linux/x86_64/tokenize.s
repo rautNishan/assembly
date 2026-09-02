@@ -78,9 +78,9 @@ tokenize_loop:
     call memview
     call findspace
     call memview
-    inc rdi
     cmp byte ptr [rdi], 0
     je tokenize_ret
+    inc rdi
     jmp tokenize_loop
 
 
@@ -104,9 +104,9 @@ skipwhite:
     je skipwhite.advance
     ret
         skipwhite.advance:
-        inc rdi
-        jmp skipwhite
+            inc rdi
+            jmp skipwhite
 
 .data
-input_buff: .skip 128, 0xff
-tokens: .skip 128
+    input_buff: .skip 128, 0xff
+    tokens: .skip 128
