@@ -102,11 +102,11 @@ findspace_ret:
 skipwhite:
     cmp byte ptr [rdi], 0x20
     je skipwhite.advance
+    ret
         skipwhite.advance:
         inc rdi
         jmp skipwhite
 
-    ret
 .data
 input_buff: .skip 128, 0xff
 tokens: .skip 128
